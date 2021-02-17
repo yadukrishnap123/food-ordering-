@@ -20,8 +20,10 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            if 'next' in request.POST:
-                return redirect(request.POST.get('next'))
+            # if 'next' in request.POST:
+            #     return redirect(request.POST.get('next'))
+            if user.is_superuser:
+                return redirect("main:admin_view")
             return redirect('main:home')
     else:
         form = AuthenticationForm()

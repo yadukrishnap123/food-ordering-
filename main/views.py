@@ -139,7 +139,7 @@ def order_details(request):
     return render(request, 'main/order_details.html', context)
 
 @login_required(login_url='/accounts/login/')
-@admin_required
+# @admin_required
 def admin_view(request):
     cart_items = CartItems.objects.filter(item__created_by=request.user, ordered=True,status="Delivered").order_by('-ordered_date')
     context = {
@@ -148,7 +148,7 @@ def admin_view(request):
     return render(request, 'main/admin_view.html', context)
 
 @login_required(login_url='/accounts/login/')
-@admin_required
+# @admin_required
 def item_list(request):
     items = Item.objects.filter(created_by=request.user)
     context = {
@@ -157,7 +157,7 @@ def item_list(request):
     return render(request, 'main/item_list.html', context)
 
 @login_required
-@admin_required
+# @admin_required
 def update_status(request,pk):
     if request.method == 'POST':
         status = request.POST['status']
@@ -168,7 +168,7 @@ def update_status(request,pk):
     return render(request, 'main/pending_orders.html')
 
 @login_required(login_url='/accounts/login/')
-@admin_required
+# @admin_required
 def pending_orders(request):
     items = CartItems.objects.filter(item__created_by=request.user, ordered=True,status="Active").order_by('-ordered_date')
     context = {
@@ -177,7 +177,7 @@ def pending_orders(request):
     return render(request, 'main/pending_orders.html', context)
 
 @login_required(login_url='/accounts/login/')
-@admin_required
+# @admin_required
 def admin_dashboard(request):
     cart_items = CartItems.objects.filter(item__created_by=request.user, ordered=True)
     pending_total = CartItems.objects.filter(item__created_by=request.user, ordered=True,status="Active").count()

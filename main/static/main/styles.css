@@ -17,3 +17,7 @@
     text-align: center;
     justify-content: center;
 }
+body {
+    background-image: url("../images/4.jpeg");
+    color: rgb(255, 0, 0);
+}
